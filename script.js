@@ -33,7 +33,7 @@ function multiply() {
         // Update the result field
         var resultField = document.getElementById('result');
         if (expectedBS=='0') {
-                resultField.value = 'You have ' + totalBuyTtb + 'TTB BUY, ' + totalSellTtb + 'TTB SELL, Total Buy: ' + totalBuyGrams + 'gram, Total Sell: ' + totalSellGrams + 'gram Your Equity: ' + equityBalance + '$' + '\n\n *Your Limit is: ' + result.toFixed(2) + '$*';
+                resultField.value = 'You have ' + totalBuyTtb + 'TTB BUY, ' + totalSellTtb + 'TTB SELL, Total Buy: ' + totalBuyGrams + 'gram, Total Sell: ' + totalSellGrams + 'gram Your Equity: ' + equityBalance + '$' + '\n\n*Your Limit is: ' + result.toFixed(2) + '$*';
            }
             else{
                 resultField.value = 'Your have ' + (totalBuyTtbEx + totalBuyTtb).toFixed(2) + 'TTB BUY, ' + (totalSellTtb + totalSellTtbEx).toFixed(2) + 'TTB SELL, Total Buy: ' + (totalBuyGrams + totalBuyGramsEx).toFixed(2) + 'gram, Total Sell: ' + (totalSellGrams + totalSellGramsEx).toFixed(2) + 'gram, Your old Equity: ' + equityBalance + '$, after Set new limit your Equity Balance will be ' + finalEquity.toFixed(2) + '$, Your old Limit is: ' + result.toFixed(2) + '$ AND \n\n *New Limit will be: ' + newLimit.toFixed(2) + '$*';
