@@ -67,6 +67,7 @@ function multiply() {
 }
 
 
+
 function copyResult() {
     // Get the result field
     var resultField = document.getElementById('result');
@@ -78,10 +79,14 @@ function copyResult() {
     // Copy the selected text to the clipboard
     document.execCommand('copy');
 
-    // Deselect the text
-    resultField.setSelectionRange(0, 0);
+    // Show the alert
+    var copyResultAlert = document.getElementById('copyResultAlert');
+    copyResultAlert.style.display = 'block';
 
-    // Optionally, provide user feedback (you can customize this part)
-    alert('Result copied to clipboard!');
+    // Hide the alert after a delay (e.g., 3 seconds)
+    setTimeout(function () {
+        copyResultAlert.style.display = 'none';
+    }, 2000);
 }
+
 
