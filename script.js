@@ -32,12 +32,27 @@ function multiply() {
         
         // Update the result field
         var resultField = document.getElementById('result');
-        if (expectedBS=='0') {
-                resultField.value = 'You have ' + totalBuyTtb + 'TTB BUY, ' + totalSellTtb + 'TTB SELL, Total Buy: ' + totalBuyGrams + 'gram, Total Sell: ' + totalSellGrams + 'gram Your Equity: ' + equityBalance + '$' + '\n\n*Your Limit is: ' + result.toFixed(2) + '$*';
-           }
-            else{
-                resultField.value = 'Your have ' + (totalBuyTtbEx + totalBuyTtb).toFixed(2) + 'TTB BUY, ' + (totalSellTtb + totalSellTtbEx).toFixed(2) + 'TTB SELL, Total Buy: ' + (totalBuyGrams + totalBuyGramsEx).toFixed(2) + 'gram, Total Sell: ' + (totalSellGrams + totalSellGramsEx).toFixed(2) + 'gram, Your old Equity: ' + equityBalance + '$, after Set new limit your Equity Balance will be ' + finalEquity.toFixed(2) + '$, Your old Limit is: ' + result.toFixed(2) + '$ AND\n\n*New Limit will be: ' + newLimit.toFixed(2) + '$*';
-            }
+        if (expectedBS === 0) {
+            var resultString = '';
+            if (totalBuyTtb !== 0) resultString += 'You have Buy: ' + totalBuyTtb.toFixed(2) + 'Pcs TTB,';
+            if (totalSellTtb !== 0) resultString += ' Total Sell: ' + totalSellTtb.toFixed(2) + 'Pcs TTB,';
+            if (totalBuyGrams !== 0) resultString += ' Total Buy: ' + totalBuyGrams.toFixed(2) + 'gram,';
+            if (totalSellGrams !== 0) resultString += ' Total Sell: ' + totalSellGrams.toFixed(2) + 'gram,';
+            resultString += ' Your Equity: ' + equityBalance.toFixed(2) + '$ *Your Limit is: ' + result.toFixed(2) + '$*';
+
+            // Trim trailing comma and update the resultField
+            resultField.value = resultString.replace(/,\s*$/, '');
+        } else {
+            var resultString = '';
+            if ((totalBuyTtbEx + totalBuyTtb) !== 0) resultString += 'Your have Buy: ' + (totalBuyTtbEx + totalBuyTtb).toFixed(2) + 'Pcs TTB,';
+            if ((totalSellTtb + totalSellTtbEx) !== 0) resultString += ' Total Sell: ' + (totalSellTtb + totalSellTtbEx).toFixed(2) + 'Pcs TTB,';
+            if ((totalBuyGrams + totalBuyGramsEx) !== 0) resultString += ' Total Buy: ' + (totalBuyGrams + totalBuyGramsEx).toFixed(2) + 'gram,';
+            if ((totalSellGrams + totalSellGramsEx) !== 0) resultString += ' Total Sell: ' + (totalSellGrams + totalSellGramsEx).toFixed(2) + 'gram,';
+            resultString += ' Your old Equity: ' + equityBalance.toFixed(2) + '$, after Set new limit your Equity Balance will be ' + finalEquity.toFixed(2) + '$, Your old Limit is: ' + result.toFixed(2) + '$ AND *New Limit will be: ' + newLimit.toFixed(2) + '$*';
+
+            // Trim trailing comma and update the resultField
+            resultField.value = resultString.replace(/,\s*$/, '');
+        }
     } else {
         // If any input is not a valid number, display a message
         document.getElementById('result').value = 'Result: Please enter valid numerical values in all fields';
