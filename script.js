@@ -38,8 +38,12 @@ function multiply() {
             if (totalSellTtb !== 0) resultString += ' Total Sell: ' + totalSellTtb.toFixed(2) + 'Pcs TTB,';
             if (totalBuyGrams !== 0) resultString += ' Total Buy: ' + totalBuyGrams.toFixed(2) + 'gram,';
             if (totalSellGrams !== 0) resultString += ' Total Sell: ' + totalSellGrams.toFixed(2) + 'gram,';
-            resultString += ' Your Equity: ' + equityBalance.toFixed(2) + '$ *Your Limit is: ' + result.toFixed(2) + '$*';
 
+            if (totalBuyTtb > totalSellTtb || totalBuyGrams > totalSellGrams) {
+                resultString += ' Your Equity: ' + (equityBalance) + '$ \n\n*Your Limit is: ' + (result + 5).toFixed(2) + '$*';
+            } else {
+                resultString += ' Your Equity: ' + (equityBalance) + '$ \n\n*Your Limit is: ' + (result - 5).toFixed(2) + '$*';
+            }
             // Trim trailing comma and update the resultField
             resultField.value = resultString.replace(/,\s*$/, '');
         } else {
@@ -48,8 +52,11 @@ function multiply() {
             if ((totalSellTtb + totalSellTtbEx) !== 0) resultString += ' Total Sell: ' + (totalSellTtb + totalSellTtbEx).toFixed(2) + 'Pcs TTB,';
             if ((totalBuyGrams + totalBuyGramsEx) !== 0) resultString += ' Total Buy: ' + (totalBuyGrams + totalBuyGramsEx).toFixed(2) + 'gram,';
             if ((totalSellGrams + totalSellGramsEx) !== 0) resultString += ' Total Sell: ' + (totalSellGrams + totalSellGramsEx).toFixed(2) + 'gram,';
-            resultString += ' Your old Equity: ' + equityBalance.toFixed(2) + '$, after Set new limit your Equity Balance will be ' + finalEquity.toFixed(2) + '$, Your old Limit is: ' + result.toFixed(2) + '$ AND *New Limit will be: ' + newLimit.toFixed(2) + '$*';
-
+            if ((totalBuyTtbEx + totalBuyTtb) > (totalSellTtb + totalSellTtbEx) || (totalBuyGrams + totalBuyGramsEx) > (totalSellGrams + totalSellGramsEx)) {
+                resultString += ' Your old Equity: ' + equityBalance + '$, after Set new limit your Equity Balance will be ' + (finalEquity).toFixed(2) + '$, Your old Limit is: ' + (result + 5).toFixed(2) + '$ AND \n\n*New Limit will be: ' + (newLimit + 5).toFixed(2) + '$*';
+            } else {
+                resultString += ' Your old Equity: ' + (equityBalance) + '$, after Set new limit your Equity Balance will be ' + (finalEquity).toFixed(2) + '$, Your old Limit is: ' + (result - 5).toFixed(2) + '$ AND \n\n*New Limit will be: ' + (newLimit - 5).toFixed(2) + '$*';
+            }
             // Trim trailing comma and update the resultField
             resultField.value = resultString.replace(/,\s*$/, '');
         }
